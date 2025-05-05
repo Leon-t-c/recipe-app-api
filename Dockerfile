@@ -3,6 +3,13 @@ LABEL maintainer="leontowork.1@gmail.com"
 
 ENV PYTHONUNBUFFERED 1
 
+COPY ./requirements.txt /tmp/
+COPY ./requirements.dev.txt /tmp/
+RUN pip install --upgrade pip && \
+    pip install -r /tmp/requirements.txt && \
+    pip install -r /tmp/requirements.dev.txt
+
+
 COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./app /app
